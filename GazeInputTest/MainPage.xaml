@@ -6,7 +6,7 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:g="using:Microsoft.Toolkit.Uwp.Input.GazeInteraction"
-  xmlns:k="using:Microsoft.Toolkit.Uwp.Input.GazeControls"
+  xmlns:k="using:CommunityToolkit.Labs.Uwp.GazeControls"
   g:GazeInput.Interaction="Enabled"
   mc:Ignorable="d">
 

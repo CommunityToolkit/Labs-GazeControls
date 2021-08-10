@@ -5,7 +5,16 @@
     <Title>Windows Community Toolkit Gaze Controls Library</Title>
     <Description>A library controls optimized for gaze interaction</Description>
     <PackageTags>Windows;Community;Toolkit;WCT;UWP;Gaze;Eye;Tracker;EyeTracker</PackageTags>
+    <GenerateLibraryLayout>true</GenerateLibraryLayout>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Page Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="KeyboardLayouts\FilenameEntry.xaml">

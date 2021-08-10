@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{A122EA02-4DE7-413D-BFBF-AF7DFC668DD6}</ProjectGuid>
+    <ProjectGuid>{6708804D-52D7-4F38-A20A-816EC74BC59A}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GazeInputTest</RootNamespace>
@@ -144,15 +144,14 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.12</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Input.GazeInteraction">
+      <Version>7.0.2</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Microsoft.Toolkit.Uwp.Input.GazeControls\Microsoft.Toolkit.Uwp.Input.GazeControls.csproj">
-      <Project>{fa4682b6-26be-49a0-be97-96956724ae55}</Project>
-      <Name>Microsoft.Toolkit.Uwp.Input.GazeControls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Microsoft.Toolkit.Uwp.Input.GazeInteraction\Microsoft.Toolkit.Uwp.Input.GazeInteraction.csproj">
-      <Project>{5bf75694-798a-43a0-8150-415de195359c}</Project>
-      <Name>Microsoft.Toolkit.Uwp.Input.GazeInteraction</Name>
+    <ProjectReference Include="..\CommunityToolkit.Labs.Uwp.GazeControls\CommunityToolkit.Labs.Uwp.GazeControls.csproj">
+      <Project>{352191f5-8704-45a1-acb3-ca47c6898a99}</Project>
+      <Name>CommunityToolkit.Labs.Uwp.GazeControls</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

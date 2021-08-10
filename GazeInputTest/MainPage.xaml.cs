@@ -4,7 +4,7 @@
 
 using System;
 using System.Collections.Generic;
-using Microsoft.Toolkit.Uwp.Input.GazeControls;
+using CommunityToolkit.Labs.Uwp.GazeControls;
 using Microsoft.Toolkit.Uwp.Input.GazeInteraction;
 using Windows.ApplicationModel.Core;
 using Windows.Media.SpeechSynthesis;
@@ -41,7 +41,7 @@ namespace GazeInputTest
 
         private async void OnMainPageLoaded(object sender, RoutedEventArgs e)
         {
-            var uri = new Uri($"ms-appx:///Microsoft.Toolkit.Uwp.Input.GazeControls/KeyboardLayouts/MinAAC.xaml");
+            var uri = new Uri($"ms-appx:///CommunityToolkit.Labs.Uwp.GazeControls/KeyboardLayouts/MinAAC.xaml");
             var layoutFile = await StorageFile.GetFileFromApplicationUriAsync(uri);
             _layoutsFolder = await layoutFile.GetParentAsync();
             await GazeKeyboard.TryLoadLayoutAsync(layoutFile);
