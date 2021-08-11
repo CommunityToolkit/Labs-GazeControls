@@ -1,4 +1,4 @@
-<Project Sdk="MSBuild.Sdk.Extras">
+﻿<Project Sdk="MSBuild.Sdk.Extras">
 
   <PropertyGroup>
     <TargetFrameworks>uap10.0.17763</TargetFrameworks>
@@ -8,6 +8,18 @@
     <GenerateLibraryLayout>true</GenerateLibraryLayout>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <RootNamespace>CommunityToolkit.Labs.Uwp.GazeControls</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>CommunityToolkit.Labs.Uwp.GazeControls</PackageId>
+    <Description>
+      This package includes a set of UI controls optimized for eye gaze interaction.
+    </Description>
+    <Version>0.1.0</Version>
+  </PropertyGroup>
+  
   <ItemGroup>
     <Page Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml">
       <SubType>Designer</SubType>
@@ -40,4 +52,8 @@
     <PRIResource Include="Strings\en-us\Resources.resw" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="GazeControls.licenseheader" />
+  </ItemGroup>
+  
 </Project>
