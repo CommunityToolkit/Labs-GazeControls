@@ -148,7 +148,7 @@ namespace CommunityToolkit.Labs.Uwp.GazeControls
 
             GazeKeyboard.Target = FilenameTextbox;
 
-            var uri = new Uri($"ms-appx:///CommunityToolkit.Labs.Uwp.GazeControls/KeyboardLayouts/FilenameEntry.xaml");
+            var uri = new Uri($"ms-appx:///CommunityToolkit.Labs.Uwp.GazeControls/KeyboardLayouts/FilenameEntry.xml");
             var layoutFile = await StorageFile.GetFileFromApplicationUriAsync(uri);
             await GazeKeyboard.TryLoadLayoutAsync(layoutFile);
 

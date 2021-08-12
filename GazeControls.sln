@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommunityToolkit.Labs.Uwp.GazeControls", "CommunityToolkit.Labs.Uwp.GazeControls\CommunityToolkit.Labs.Uwp.GazeControls.csproj", "{352191F5-8704-45A1-ACB3-CA47C6898A99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GazeInputTest", "GazeInputTest\GazeInputTest.csproj", "{6708804D-52D7-4F38-A20A-816EC74BC59A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GazeControlsTest", "GazeControlsTest\GazeControlsTest.csproj", "{6708804D-52D7-4F38-A20A-816EC74BC59A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

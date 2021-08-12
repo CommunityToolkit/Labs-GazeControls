@@ -6,8 +6,8 @@
     <ProjectGuid>{6708804D-52D7-4F38-A20A-816EC74BC59A}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GazeInputTest</RootNamespace>
-    <AssemblyName>GazeInputTest</AssemblyName>
+    <RootNamespace>GazeControlsTest</RootNamespace>
+    <AssemblyName>GazeControlsTest</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>

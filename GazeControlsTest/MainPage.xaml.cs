@@ -41,7 +41,7 @@ namespace GazeInputTest
 
         private async void OnMainPageLoaded(object sender, RoutedEventArgs e)
         {
-            var uri = new Uri($"ms-appx:///CommunityToolkit.Labs.Uwp.GazeControls/KeyboardLayouts/MinAAC.xaml");
+            var uri = new Uri($"ms-appx:///CommunityToolkit.Labs.Uwp.GazeControls/KeyboardLayouts/MinAAC.xml");
             var layoutFile = await StorageFile.GetFileFromApplicationUriAsync(uri);
             _layoutsFolder = await layoutFile.GetParentAsync();
             await GazeKeyboard.TryLoadLayoutAsync(layoutFile);
@@ -126,7 +126,7 @@ namespace GazeInputTest
             picker.Favorites = new List<StorageFolder>();
             picker.Favorites.Add(_layoutsFolder);
             picker.Favorites.Add(library.SaveFolder);
-            picker.FileTypeFilter.Add(".xaml");
+            picker.FileTypeFilter.Add(".xml");
             picker.CurrentFolder = library.SaveFolder;
             await picker.ShowAsync();
             var file = picker.SelectedItem;

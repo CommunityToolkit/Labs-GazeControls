@@ -4,13 +4,22 @@ Eye gaze as a form of input is similar to mouse, pen and touch in the sense that
 
 Eye gaze is less precise than pen, touch and mouse. The measurement errors are larger due to lighting and environmental conditions. There is a larger variance among user populations. There is a diversity in the quality and calibration accuracy among different trackers. When these factors are considered, it becomes apparent that a user interface designed for mouse, pen or touch cannot be directly used for effective eye gaze interaction. Just as user interfaces originally designed for mouse were modified to suit touch interaction, we need to modify the existing user interfaces to be compatible with eye gaze input.
 
-The GazeControls library, built on the [GazeInteraction Library](https://github.com/MicrosoftDocs/WindowsCommunityToolkitDocs/blob/master/docs/gaze/GazeInteractionLibrary.md),  includes a set of user controls that can be reused in different applications with eye gaze input. Instead of trying to design controls for all forms of input simultaneously these set of controls are designed primarily for eye gaze input.
+The GazeControls library, built on the [GazeInteraction Library](https://docs.microsoft.com/en-us/windows/communitytoolkit/gaze/gazeinteractionlibrary#prerequisites),  includes a set of user controls that can be reused in different applications with eye gaze input. Instead of trying to design controls for all forms of input simultaneously these set of controls are designed primarily for eye gaze input.
 
 ## Prerequisites
 
 Since the GazeControls library is built on top of the GazeInteraction library, the first set of prerequisites are the same as the [prerequisites for the GazeInteraction library](https://github.com/MicrosoftDocs/WindowsCommunityToolkitDocs/blob/master/docs/gaze/GazeInteractionLibrary.md#prerequisites).
 
 There are additional prerequisites for each of the controls and they are listed below in the context of the documentation for the specific control.
+
+## Nuget Feed
+To use the GazeControls library, please do the following:
+1. Add a new nuget feed either in `nuget.config` or Visual Studio by clicking on Tools...Options...Nuget Package Manager...Package Sources and adding a new entry with the following details:
+   * Name: `CommunityToolkit-Labs`
+   * Source: `https://pkgs.dev.azure.com/dotnet/CommunityToolkit/_packaging/CommunityToolkit-Labs/nuget/v3/index.json`
+2. Add a reference to `CommunityToolkit.Labs.Uwp.GazeControls` from the above nuget feed
+
+Please refer to the documentation below on how to use specific controls.
 
 ## Supported controls
 
@@ -67,17 +76,29 @@ To use any of the above layouts, please do the following:
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-    <gc:GazeKeyboard x:Name="GazeKeyboard" Grid.Row="1"
-                     LayoutUri="ms-appx:///Microsoft.Toolkit.Uwp.Input.GazeControls/KeyboardLayouts/MinAAC.xaml" />
+    <gc:GazeKeyboard x:Name="GazeKeyboard" Grid.Row="1" />
 
     </Grid>
   ```
 
+* Load a keyboard layout after the `Page` has loaded with code similar to the following:
+  ```
+  private async void LoadKeyboardLayout()
+  {
+      var uri = new Uri($"ms-appx:///CommunityToolkit.Labs.Uwp.GazeControls/KeyboardLayouts/MinAAC.xml");
+      var layoutFile = await StorageFile.GetFileFromApplicationUriAsync(uri);
+      await GazeKeyboard.TryLoadLayoutAsync(layoutFile);
+      GazeKeyboard.Target = TheTextBox;
+      GazeKeyboard.PredictionTargets = new Button[] { Prediction0, Prediction1, Prediction2 };
+  }
+  ```
 ### Custom layouts - Simple
 
 You can also define your own custom layouts, include it in your application and change the layouts on the fly by assigning the `LayoutUri` property of the keyboard control to the URI of your custom keyboard layout as shown above.
 
 Custom layouts are specified directly using XAML and a few attached properties that dictate their behavior. The best way to create new layouts, is to use one of the built-in layouts as a starting point and copy and modify them to your own needs.
+
+**NOTE: Keyboard layouts are specified in XAML but the file is saved with a .xml extension**
 
 The behavior of the button when it is clicked is governed by a few rules:
 
@@ -91,7 +112,7 @@ The behavior of the button when it is clicked is governed by a few rules:
   <Button Style="{StaticResource Symbol}" Content="&#xE750;" k:GazeKeyboard.VK="8"/>
   ```
 
-* If a button has the `VKList` property, the control expects a set of virtual key codes as `Int32` values and injects that list of keys in sequence. E.g. in `MinAAC.xaml` you can see the `VKList` property assigned for clearing the textbox as follows.
+* If a button has the `VKList` property, the control expects a set of virtual key codes as `Int32` values and injects that list of keys in sequence. E.g. in `MinAAC.xml` you can see the `VKList` property assigned for clearing the textbox as follows.
 
   ```
     <Button Grid.Row="2" Grid.Column="9" Style="{StaticResource Symbol}" Content="&#xE74D;">
@@ -122,7 +143,7 @@ The behavior of the button when it is clicked is governed by a few rules:
 When the number of keys in the layout is larger than what the application can display (and still have space left over for the actual application needs), it can choose to split up the layout into multiple pages. When this is done, the XAML layout for the custom layout should follow the rules below:
 
 * The top level `Grid` should have a name specified with `x:Name` property.
-* There should be a `GazeKeyboard.PageList` in the layout. This node should include a list of strings that specify the names of other `Grid` notes, which define the separate pages in the layout. The example below is taken from `FullKeyboard.xaml`
+* There should be a `GazeKeyboard.PageList` in the layout. This node should include a list of strings that specify the names of other `Grid` notes, which define the separate pages in the layout. The example below is taken from `FullKeyboard.xml`
 
   ```
     <k:GazeKeyboard.PageList>
@@ -160,7 +181,6 @@ When the number of keys in the layout is larger than what the application can di
 | -- | -- | -- |
 | Target | TextBox | Gets or sets the target text box for injecting keys |
 | PredictionLanguage | string | Gets or sets the text prediction language |
-| LayoutUri | Uri | Gets or sets the URI of the layout file for the keyboard |
 | PredictionTargets | Button[] | Gets or sets the prediction targets buttons. When text prediction is available, the content of the buttons it set to the prediction text. |
 
 ## GazeFileOpenPicker and GazeFileSavePicker
@@ -280,21 +300,8 @@ The GazeScrollbar has two pairs of buttons for each direction of scrolling. E.g.
 | LineWidth | double | Gets or sets the distance to scroll horizontally when a line-left or line-right button is pressed |
 | LineHeight | double | Gets or sets the distance to scroll vertically when a line-up or line-down button is pressed |
 
-## Sample Project
 
-[GazeControlsPage](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.0.0/Microsoft.Toolkit.Uwp.SampleApp/SamplePages/GazeControls/). You can [see this in action](uwpct://Gaze?sample=GazeControls) in the [Windows Community Toolkit Sample App](https://aka.ms/windowstoolkitapp).
 
-## Requirements
+## 🧪 This project is under Community Toolkit Labs. What does that mean?
 
-| Device family | Universal,10.0.17134.1 or higher   |
-| -- | -- |
-| Namespace | Microsoft.Toolkit.Uwp.Input.GazeControls |
-| NuGet package | [NuGet package](https://www.nuget.org/packages/Microsoft.Toolkit.Uwp.Input.GazeControls/) |
-
-## API
-
-* [Gaze Controls Library source code](https://github.com/windows-toolkit/WindowsCommunityToolkit/tree/rel/7.0.0/Microsoft.Toolkit.Uwp.Input.GazeControls)
-
-## Related Topics
-
-* [Windows 10 Gaze Input APIs](/uwp/api/windows.devices.input.preview)
+[Community Toolkit Labs](https://aka.ms/toolkit/wiki/labs) is a place for rapidly prototyping ideas and gathering community feedback. It is an incubation space where the developer community can come together to work on new ideas before thinking about final quality gates and ship cycles. Developers can focus on the scenarios and usage of their features before finalizing docs, samples, and tests required to ship a complete idea within the Toolkit.

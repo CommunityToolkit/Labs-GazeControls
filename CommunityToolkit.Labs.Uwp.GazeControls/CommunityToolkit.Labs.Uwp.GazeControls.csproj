@@ -17,7 +17,7 @@
     <Description>
       This package includes a set of UI controls optimized for eye gaze interaction.
     </Description>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
   </PropertyGroup>
   
   <ItemGroup>
@@ -29,16 +29,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="KeyboardLayouts\FilenameEntry.xaml">
+    <Content Include="KeyboardLayouts\FilenameEntry.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="KeyboardLayouts\FullKeyboard.xaml">
+    <Content Include="KeyboardLayouts\FullKeyboard.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="KeyboardLayouts\MinAAC.xaml">
+    <Content Include="KeyboardLayouts\MinAAC.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="KeyboardLayouts\TwoStageKeyboard.xaml">
+    <Content Include="KeyboardLayouts\TwoStageKeyboard.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -6,7 +6,7 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:g="using:Microsoft.Toolkit.Uwp.Input.GazeInteraction"
-  xmlns:k="using:CommunityToolkit.Labs.Uwp.GazeControls"
+  xmlns:gc="using:CommunityToolkit.Labs.Uwp.GazeControls"
   g:GazeInput.Interaction="Enabled"
   mc:Ignorable="d">
 
@@ -84,7 +84,7 @@
         <Button x:Name="Prediction1" Height="100" MinWidth="300" Style="{StaticResource Alpha}" />
         <Button x:Name="Prediction2" Height="100" MinWidth="300" Style="{StaticResource Alpha}" />
       </StackPanel>
-      <k:GazeKeyboard Grid.Row="2" x:Name="GazeKeyboard"/>
+      <gc:GazeKeyboard Grid.Row="2" x:Name="GazeKeyboard"/>
     </Grid>
     <Grid Grid.Column="2">
       <Grid.RowDefinitions>
