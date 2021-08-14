@@ -22,14 +22,12 @@
       </Grid>
     </DataTemplate>
     <Style x:Key="CommandSpaceButtonStyles" TargetType="Button">
-      <Setter Property="Height" Value="120" />
-      <Setter Property="Width" Value="240" />
-      <Setter Property="HorizontalAlignment" Value="Center"/>
-      <Setter Property="VerticalAlignment" Value="Bottom" />
+      <Setter Property="HorizontalAlignment" Value="Stretch"/>
+      <Setter Property="VerticalAlignment" Value="Stretch" />
     </Style>
-    <Style x:Key="PickerButtonStyles" TargetType="Button">
-      <Setter Property="Height" Value="120" />
-      <Setter Property="Width" Value="120" />
+    <Style x:Key="FavoritesButtonStyles" TargetType="Button">
+      <Setter Property="VerticalAlignment" Value="Stretch"/>
+      <Setter Property="MinWidth" Value="100"/>
       <Setter Property="Margin" Value="0,0,16,8" />
     </Style>
     <x:Double x:Key="ContentDialogMaxWidth">9999</x:Double>
@@ -39,8 +37,8 @@
   
   <Grid>
     <Grid.RowDefinitions>
-      <RowDefinition/>
-      <RowDefinition Height="140"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="100"/>
     </Grid.RowDefinitions>
       
     <Grid Grid.Row="0" x:Name="FilenameEntryGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Collapsed">
@@ -54,14 +52,42 @@
     <UserControl Grid.Row="0" x:Name="FileListingGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Collapsed">
       <Grid>
         <Grid.RowDefinitions>
-          <RowDefinition Height="130" />
+          <RowDefinition Height="100"/>
           <RowDefinition Height="*" />
-          <RowDefinition Height="130" />
         </Grid.RowDefinitions>
-        <StackPanel x:Name="FavoritesPanel" Grid.Row="0" Orientation="Horizontal">
-        </StackPanel>
 
-        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1" Margin="0,0,0,0">
+        <Grid Grid.Row="0" Margin="0,0,0,10">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+          </Grid.ColumnDefinitions>
+          <StackPanel x:Name="FavoritesPanel" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Stretch" HorizontalAlignment="Right"/>
+          <Grid Grid.Column="0" HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+              <RowDefinition />
+              <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="120"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="ParentFolderButton" Grid.Column="0" Grid.RowSpan="2" Width="100" Height="100" Click="OnParentFolderClick" Content="&#xF0AD;" FontFamily="Segoe MDL2 Assets" FontSize="32" Margin="0,0,20,0"/>
+            <Border Grid.Row="0" Grid.Column="1"  BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Stretch" Margin="0,0,0,8">
+              <ScrollViewer x:Name="SelectedItemScrollViewer" VerticalScrollBarVisibility="Disabled"
+                        HorizontalScrollBarVisibility="Hidden" VerticalScrollMode="Disabled" 
+                        HorizontalScrollMode="Enabled" >
+                <TextBlock Text="{x:Bind Mode=OneWay, Path=CurrentSelectedItem.Path}" 
+                       FontWeight="Bold" FontSize="12" Margin="8,0,0,0" 
+                       VerticalAlignment="Center" HorizontalAlignment="Stretch" Padding="0,0,8,0"/>
+              </ScrollViewer>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="1" BorderThickness="1" BorderBrush="Black" Margin="0,8,0,0">
+              <TextBlock x:Name="FileTypeFilterTextBlock" FontSize="12" FontWeight="Bold" VerticalAlignment="Center" Padding="8,0,0,0"/>
+            </Border>
+          </Grid>
+        </Grid>
+
+        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1" Margin="0,0,0,10">
           <Grid>
             <Grid.RowDefinitions>
               <RowDefinition Height="*"/>
@@ -84,29 +110,6 @@
           </Grid>
         </Border>
 
-        <Grid Grid.Row="2" Margin="0,10,0,0" HorizontalAlignment="Stretch">
-          <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-          </Grid.RowDefinitions>
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="144"/>
-            <ColumnDefinition Width="*"/>
-          </Grid.ColumnDefinitions>
-          <Button x:Name="ParentFolderButton" Grid.Column="0" Grid.RowSpan="2" Width="120" Height="120" Click="OnParentFolderClick" Content="&#xF0AD;" FontFamily="Segoe MDL2 Assets" FontSize="32" Margin="0,0,20,0"/>
-          <Border Grid.Row="0" Grid.Column="1"  BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Stretch" Margin="0,0,0,8">
-            <ScrollViewer x:Name="SelectedItemScrollViewer" VerticalScrollBarVisibility="Disabled"
-                        HorizontalScrollBarVisibility="Hidden" VerticalScrollMode="Disabled" 
-                        HorizontalScrollMode="Enabled" >
-              <TextBlock Text="{x:Bind Mode=OneWay, Path=CurrentSelectedItem.Path}" 
-                       FontWeight="Bold" FontSize="18"  Margin="16,0,0,0" 
-                       VerticalAlignment="Center" HorizontalAlignment="Stretch" Padding="0,0,16,0"/>
-            </ScrollViewer>
-          </Border>
-          <Border Grid.Row="1" Grid.Column="1" BorderThickness="1" BorderBrush="Black" Margin="0,8,0,0">
-            <TextBlock x:Name="FileTypeFilterTextBlock" FontSize="18"/>
-          </Border>
-        </Grid>
       </Grid>
     </UserControl>
     <Border Grid.Row="0" x:Name="FileOverwriteConfirmationGrid" 
@@ -139,23 +142,23 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
           </Grid.ColumnDefinitions>
-          <Button Grid.Row="0" Grid.Column="0" x:Name="YesBtn" Content="Yes" HorizontalAlignment="Center" Style="{StaticResource CommandSpaceButtonStyles}" Margin="10,0,10,0"/>
-          <Button Grid.Row="0" Grid.Column="1" x:Name="NoBtn" Content="No" HorizontalAlignment="Center" Style="{StaticResource CommandSpaceButtonStyles}" Margin="10,0,10,0"/>
+          <Button Grid.Row="0" Grid.Column="0" x:Name="YesBtn" Content="Yes" Style="{StaticResource CommandSpaceButtonStyles}" Margin="20"/>
+          <Button Grid.Row="0" Grid.Column="1" x:Name="NoBtn" Content="No" Style="{StaticResource CommandSpaceButtonStyles}" Margin="20"/>
         </Grid>
       </Grid>
     </Border>
-    <UserControl Grid.Row="1" x:Name="CommandRow" VerticalAlignment="Bottom">
-      <Grid VerticalAlignment="Bottom">
+    <UserControl Grid.Row="1" x:Name="CommandRow" VerticalAlignment="Stretch">
+      <Grid VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
           <ColumnDefinition />
           <ColumnDefinition />
           <ColumnDefinition />
           <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Button Grid.Column="0" x:Name="Col0Button" Style="{StaticResource CommandSpaceButtonStyles}" Visibility="Collapsed"/>
-        <Button Grid.Column="1" x:Name="Col1Button" Style="{StaticResource CommandSpaceButtonStyles}" Visibility="Collapsed"/>
-        <Button Grid.Column="2" x:Name="Col2Button" Style="{StaticResource CommandSpaceButtonStyles}" />
-        <Button Grid.Column="3" x:Name="Col3Button" Style="{StaticResource CommandSpaceButtonStyles}" />
+        <Button Grid.Column="0" x:Name="Col0Button" Margin="0,10,10,0" Style="{StaticResource CommandSpaceButtonStyles}" Visibility="Collapsed"/>
+        <Button Grid.Column="1" x:Name="Col1Button" Margin="10,10,10,0" Style="{StaticResource CommandSpaceButtonStyles}" Visibility="Collapsed"/>
+        <Button Grid.Column="2" x:Name="Col2Button" Margin="10,10,10,0" Style="{StaticResource CommandSpaceButtonStyles}" />
+        <Button Grid.Column="3" x:Name="Col3Button" Margin="10,10,0,0" Style="{StaticResource CommandSpaceButtonStyles}" />
       </Grid>
     </UserControl>
   </Grid>

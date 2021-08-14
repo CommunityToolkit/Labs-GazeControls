@@ -12,30 +12,36 @@
 
   <Grid>
     <Grid.Resources>
-      <Style TargetType="Button">
+      <Style x:Key="VerticalScrollbarButtonStyle" TargetType="Button">
         <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="Width" Value="120" />
+        <Setter Property="g:GazeInput.MaxDwellRepeatCount" Value="1000" />
+      </Style>
+      <Style x:Key="HorizontalScrollbarButtonStyle" TargetType="Button">
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="Height" Value="120" />
         <Setter Property="g:GazeInput.MaxDwellRepeatCount" Value="1000" />
       </Style>
     </Grid.Resources>
     <Grid x:Name="VerticalScrollbar" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Stretch">
       <Grid.RowDefinitions>
-        <RowDefinition Height="120"/>
-        <RowDefinition Height="120"/>
+        <RowDefinition MinHeight="80"/>
+        <RowDefinition MinHeight="80"/>
         <RowDefinition Height="*"/>
-        <RowDefinition Height="120"/>
-        <RowDefinition Height="120"/>
+        <RowDefinition MinHeight="80"/>
+        <RowDefinition MinHeight="80"/>
       </Grid.RowDefinitions>
 
       <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1,0,0,1">
-        <Button Content="&#xE70E;" Click="OnLineUpClicked"/>
+        <Button Content="&#xE70E;" Click="OnLineUpClicked" Style="{StaticResource VerticalScrollbarButtonStyle}"/>
       </Border>
 
       <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1,0,0,1">
-        <Button Content="&#xE96D;" Click="OnPageUpClicked"/>
+        <Button Content="&#xE96D;" Click="OnPageUpClicked" Style="{StaticResource VerticalScrollbarButtonStyle}"/>
       </Border>
 
       <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1,0,0,1">
@@ -43,28 +49,28 @@
       </Border>
 
       <Border Grid.Row="3" BorderBrush="Black" BorderThickness="1,0,0,1">
-        <Button Content="&#xE96E;" Click="OnPageDownClicked"/>
+        <Button Content="&#xE96E;" Click="OnPageDownClicked" Style="{StaticResource VerticalScrollbarButtonStyle}"/>
       </Border>
 
       <Border Grid.Row="4" BorderBrush="Black" BorderThickness="1,0,0,1">
-        <Button Content="&#xE70D;" Click="OnLineDownClicked"/>
+        <Button Content="&#xE70D;" Click="OnLineDownClicked" Style="{StaticResource VerticalScrollbarButtonStyle}"/>
       </Border>
 
     </Grid>
     <Grid x:Name="HorizontalScrollbar" Visibility="Collapsed" VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="120"/>
-        <ColumnDefinition Width="120"/>
+        <ColumnDefinition MinWidth="80"/>
+        <ColumnDefinition MinWidth="80"/>
         <ColumnDefinition />
-        <ColumnDefinition Width="120"/>
-        <ColumnDefinition Width="120"/>
+        <ColumnDefinition MinWidth="80"/>
+        <ColumnDefinition MinWidth="80"/>
       </Grid.ColumnDefinitions>
       <Border Grid.Column="0" BorderBrush="Black" BorderThickness="0,1,1,0">
-        <Button Content="&#xE76B;" Click="OnLineLeftClicked" />
+        <Button Content="&#xE76B;" Click="OnLineLeftClicked" Style="{StaticResource HorizontalScrollbarButtonStyle}"/>
       </Border>
 
       <Border Grid.Column="1" BorderBrush="Black" BorderThickness="0,1,1,0">
-        <Button Content="&#xE96F;" Click="OnPageLeftClicked"/>
+        <Button Content="&#xE96F;" Click="OnPageLeftClicked" Style="{StaticResource HorizontalScrollbarButtonStyle}"/>
       </Border>
 
       <Border Grid.Column="2" BorderBrush="Black" BorderThickness="0,1,1,0" HorizontalAlignment="Stretch">
@@ -72,11 +78,11 @@
       </Border>
 
       <Border Grid.Column="3" BorderBrush="Black" BorderThickness="0,1,1,0">
-        <Button Content="&#xE970;" Click="OnPageRightClicked"/>
+        <Button Content="&#xE970;" Click="OnPageRightClicked" Style="{StaticResource HorizontalScrollbarButtonStyle}"/>
       </Border>
 
       <Border Grid.Column="4" BorderBrush="Black" BorderThickness="0,1,1,0">
-        <Button Content="&#xE76C;" Click="OnLineRightClicked"/>
+        <Button Content="&#xE76C;" Click="OnLineRightClicked" Style="{StaticResource HorizontalScrollbarButtonStyle}"/>
       </Border>
 
     </Grid>

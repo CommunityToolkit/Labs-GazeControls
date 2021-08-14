@@ -40,16 +40,16 @@
     <RowDefinition Height="*" />
   </Grid.RowDefinitions>
   <Grid.ColumnDefinitions>
-    <ColumnDefinition MinWidth="150" Width="*" />
-    <ColumnDefinition MinWidth="150" Width="*" />
-    <ColumnDefinition MinWidth="150" Width="*" />
-    <ColumnDefinition MinWidth="150" Width="*" />
-    <ColumnDefinition MinWidth="150" Width="*" />
-    <ColumnDefinition MinWidth="150" Width="*" />
-    <ColumnDefinition MinWidth="150" Width="*" />
-    <ColumnDefinition MinWidth="150" Width="*" />
-    <ColumnDefinition MinWidth="150" Width="*" />
-    <ColumnDefinition MinWidth="150" Width="*" />
+    <ColumnDefinition Width="*" />
+    <ColumnDefinition Width="*" />
+    <ColumnDefinition Width="*" />
+    <ColumnDefinition Width="*" />
+    <ColumnDefinition Width="*" />
+    <ColumnDefinition Width="*" />
+    <ColumnDefinition Width="*" />
+    <ColumnDefinition Width="*" />
+    <ColumnDefinition Width="*" />
+    <ColumnDefinition Width="*" />
   </Grid.ColumnDefinitions>
 
   <Button     Grid.Row="0" Grid.Column="0" Style="{StaticResource Alpha}" Content="0" />

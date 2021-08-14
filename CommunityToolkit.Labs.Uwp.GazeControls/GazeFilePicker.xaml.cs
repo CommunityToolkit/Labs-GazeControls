@@ -130,6 +130,8 @@ namespace CommunityToolkit.Labs.Uwp.GazeControls
 
             var resourcePath = "CommunityToolkit.Labs.Uwp.GazeControls/Resources";
             _resourceLoader = ResourceLoader.GetForViewIndependentUse(resourcePath);
+
+            FilenameEntryGrid.MinWidth = Window.Current.Bounds.Width * 0.9;
         }
 
         private async void OnGazeFilePickerLoaded(object sender, RoutedEventArgs e)
@@ -195,7 +197,7 @@ namespace CommunityToolkit.Labs.Uwp.GazeControls
             var favoritesPanel = this.FindDescendant("FavoritesPanel") as StackPanel;
             Debug.Assert(favoritesPanel != null, "KnownFoldersPanel not found");
 
-            var style = (Style)this.Resources["PickerButtonStyles"];
+            var style = (Style)this.Resources["FavoritesButtonStyles"];
 
             favoritesPanel.Children.Clear();
 
