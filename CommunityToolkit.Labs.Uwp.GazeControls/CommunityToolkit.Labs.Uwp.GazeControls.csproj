@@ -17,7 +17,7 @@
     <Description>
       This package includes a set of UI controls optimized for eye gaze interaction.
     </Description>
-    <Version>0.2.0</Version>
+    <Version>0.3.0</Version>
   </PropertyGroup>
   
   <ItemGroup>
